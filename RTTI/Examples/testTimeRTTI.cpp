@@ -18,7 +18,7 @@ class D12 : public B1 {};
 class D13 : public D11{};
 class D14 : public D12{};
 
-/* Вторая иерархия */
+/* Р’С‚РѕСЂР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B2
 {
 public:

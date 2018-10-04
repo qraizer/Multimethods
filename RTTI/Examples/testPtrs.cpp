@@ -6,8 +6,8 @@
 
 namespace MM = MultiMethods_RTTI;
 
-/* Определяем классы */
-/* Первая иерархия */
+/* РћРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃС‹ */
+/* РџРµСЂРІР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B1
 {
 public:
@@ -19,7 +19,7 @@ class D12 : public B1 {};
 class D13 : public D11{};
 class D14 : public D12{};
 
-/* Вторая иерархия */
+/* Р’С‚РѕСЂР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B2
 {
 public:
@@ -30,8 +30,8 @@ class D21 : public B2 {};
 class D22 : public D21{};
 class D23 : public B2 {};
 
-/* Определяем наши мультиметоды и их перекрытия */
-/* Динамическое связывание */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅР°С€Рё РјСѓР»СЊС‚РёРјРµС‚РѕРґС‹ Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏ */
+/* Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ */
 struct TestDispatch1
 {
   static void apply(B1*, const B2*, const volatile B1*, volatile B2*)
@@ -144,11 +144,11 @@ struct TestDispatch4
   }
 };
 
-// Определение иерархий
+// РћРїСЂРµРґРµР»РµРЅРёРµ РёРµСЂР°СЂС…РёР№
 typedef MM::MakeTList<D13, D12, D11, B1, D14> Param1List;
 typedef MM::MakeTList<B2,  D21, D22, D23>     Param2List;
 
-/* Создаём диспетчеры */
+/* РЎРѕР·РґР°С‘Рј РґРёСЃРїРµС‚С‡РµСЂС‹ */
 MM::Dispatcher<TestDispatch1, void, Param1List*, const Param2List*, const volatile Param1List*, volatile Param2List*> disp1;
 MM::Dispatcher<TestDispatch2, void, const Param1List*, const volatile Param2List*, volatile Param1List*, Param2List*> disp2;
 MM::Dispatcher<TestDispatch3, void, const volatile Param1List*, volatile Param2List*, Param1List*, const Param2List*> disp3;

@@ -1,6 +1,6 @@
 /**********************************************************\
-** ╩юЁЄхцш. ┬ C++03 т STL шї эхЄ, р BOOSTют√х эх яюфїюф Є **
-**                 ттшфє шэющ рЁїшЄхъЄєЁ√                 **
+** Кортежи. В C++03 в STL их нет, а BOOSTовые не подходят **
+**                 ввиду иной архитектуры                 **
 \**********************************************************/
 #ifndef TUPLE_H_CAD83881_D6D4_40ff_B020_BBB5523F6444
 #define TUPLE_H_CAD83881_D6D4_40ff_B020_BBB5523F6444
@@ -16,8 +16,8 @@ namespace Tuples
 using Types_Lists::TList;
 using Types_Lists::NullType;
  
-/* ╙чхы ъюЁЄхцр, юфэю яюых. ╧хЁт√щ ярЁрьхЄЁ ЄЁхсєхЄё  фы  єэшъры№эющ хую шфхэЄшЇшърЎшш,
-  хёыш т яЁхфхырї ъюЁЄхцр T эхєэшърыхэ. */
+/* Узел кортежа, одно поле. Первый параметр требуется для уникальной его идентификации,
+  если в пределах кортежа T неуникален. */
 template <typename Hash, typename T> struct Field
 {
   T data;
@@ -25,8 +25,8 @@ template <typename Hash, typename T> struct Field
   Field(const T& t) : data(t){}
 };
  
-/* ├хэхЁрЄюЁ ъюЁЄхцр эр юёэютх ёяшёър Єшяют T.
-  ┬ ърўхёЄтх Hash шёяюы№чєхЄё  Єхъє∙шщ ёЁхч ёяшёър Єшяют. */
+/* Генератор кортежа на основе списка типов T.
+  В качестве Hash используется текущий срез списка типов. */
 template <typename T> struct Tuple;
 template <typename L, typename R>
 struct Tuple<TList<L, R> >: public Field<TList<L, R>, L>, public Tuple<R>
@@ -35,9 +35,9 @@ struct Tuple<TList<L, R> >: public Field<TList<L, R>, L>, public Tuple<R>
   typedef L           DataType;
   typedef Tuple<R>    base_type;
  
-  /* ╩юэёЄЁєъЄюЁ√ эєцэ√, ўЄюс√ яючтюышЄ№ яюы ь шьхЄ№ ъюэёЄрэЄэ√х ш ёё√ыюўэ√х Єшя√. */
+  /* Конструкторы нужны, чтобы позволить полям иметь константные и ссылочные типы. */
  
-  /* ╤ючфрэшх ъюЁЄхцр Ёрчэ√ь ъюышўхёЄтюь ярЁрьхЄЁют. ┴хч ъюяшярёЄр т C++03 эшъръ, єт√. */
+  /* Создание кортежа разным количеством параметров. Без копипаста в C++03 никак, увы. */
   Tuple(const L&  t):                              Field<TList<L, NullType>, L>(t){}
   template <typename T1>
   Tuple(const L&  t0, const T1& t1):               Field<TList<L, R>, L>(t0),
@@ -63,7 +63,7 @@ struct Tuple<NullType>
 {
 };
  
-/* ╧юыєўшЄ№ ёЁхч ъюЁЄхцр Tpl яю эюьхЁє яюы  I юЄ эрўрыр */
+/* Получить срез кортежа Tpl по номеру поля I от начала */
 template <int I, typename Tpl> struct GetTupleSlice
 {
   typedef typename GetTupleSlice<I-1, typename Tpl::base_type>::type type;
@@ -73,7 +73,7 @@ template <typename Tpl>        struct GetTupleSlice<0, Tpl>
   typedef Tpl type;
 };
  
-/* ╧юыєўшЄ№ яюых I ъюЁЄхцр Tpl */
+/* Получить поле I кортежа Tpl */
 template <int I, typename Tpl>
 typename GetTupleSlice<I, Tpl>::type::DataType& GetField(Tpl& tuple)
 {

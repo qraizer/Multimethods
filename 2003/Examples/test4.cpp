@@ -9,27 +9,27 @@ namespace MM = MultiMethods_03;
 using MM::TList;
 using MM::NullType;
 
-/* Наши тестовые классы */
+/* РќР°С€Рё С‚РµСЃС‚РѕРІС‹Рµ РєР»Р°СЃСЃС‹ */
 class B2;
 class D21;
 class D22;
 class D23;
 
-/* Список типов иерархии. Типы могут быть как угодно вперемежку. */
+/* РЎРїРёСЃРѕРє С‚РёРїРѕРІ РёРµСЂР°СЂС…РёРё. РўРёРїС‹ РјРѕРіСѓС‚ Р±С‹С‚СЊ РєР°Рє СѓРіРѕРґРЅРѕ РІРїРµСЂРµРјРµР¶РєСѓ. */
 typedef TList<B2, TList<D21, TList<D22, TList<D23, NullType> > > > ParamList;
-/* Параметры мультиметода: оба одного типа с поздним связыванием; возвращает void */
+/* РџР°СЂР°РјРµС‚СЂС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґР°: РѕР±Р° РѕРґРЅРѕРіРѕ С‚РёРїР° СЃ РїРѕР·РґРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј; РІРѕР·РІСЂР°С‰Р°РµС‚ void */
 typedef MM::LinkDynamic<ParamList, void> DynaParamType;
-/* "Прототип" мультиметода - два параметра одного типа */
+/* "РџСЂРѕС‚РѕС‚РёРї" РјСѓР»СЊС‚РёРјРµС‚РѕРґР° - РґРІР° РїР°СЂР°РјРµС‚СЂР° РѕРґРЅРѕРіРѕ С‚РёРїР° */
 typedef TList<MM::LinkStatic<int, void>,
         TList<DynaParamType,
         TList<DynaParamType,
         TList<MM::LinkStatic<int, void>, NullType> > > > DynaDyna;
 
-/* Параметры мультиметодов: с ранним связыванием, возвращают void */
-typedef MM::LinkStatic<      std::string,  void> StatParam1Type;        // по значению
-typedef MM::LinkStatic<const std::string&, void> StatParam2Type;        // по константной ссылке
-typedef MM::LinkStatic<      std::string&, void> StatParam3Type;        // по неконстантной ссылке
-/* "Прототипы" мультиметодов - по два разных параметра */
+/* РџР°СЂР°РјРµС‚СЂС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ: СЃ СЂР°РЅРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј, РІРѕР·РІСЂР°С‰Р°СЋС‚ void */
+typedef MM::LinkStatic<      std::string,  void> StatParam1Type;        // РїРѕ Р·РЅР°С‡РµРЅРёСЋ
+typedef MM::LinkStatic<const std::string&, void> StatParam2Type;        // РїРѕ РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ
+typedef MM::LinkStatic<      std::string&, void> StatParam3Type;        // РїРѕ РЅРµРєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ
+/* "РџСЂРѕС‚РѕС‚РёРїС‹" РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ - РїРѕ РґРІР° СЂР°Р·РЅС‹С… РїР°СЂР°РјРµС‚СЂР° */
 typedef TList<MM::LinkStatic<int, void>,
         TList<StatParam1Type,
         TList<StatParam2Type,
@@ -43,14 +43,14 @@ typedef TList<MM::LinkStatic<int, void>,
         TList<StatParam1Type,
         TList<MM::LinkStatic<int, void>, NullType> > > > Stat3Stat;
 
-/* Объявляем структуры с мультиметодами и их перекрытиями */
+/* РћР±СЉСЏРІР»СЏРµРј СЃС‚СЂСѓРєС‚СѓСЂС‹ СЃ РјСѓР»СЊС‚РёРјРµС‚РѕРґР°РјРё Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏРјРё */
 struct TestDispatch2;
 
 struct TestDispatch21;
 struct TestDispatch22;
 struct TestDispatch23;
 
-/* Создаём диспетчеры */
+/* РЎРѕР·РґР°С‘Рј РґРёСЃРїРµС‚С‡РµСЂС‹ */
 MM::Dispatcher<TestDispatch2,  DynaDyna> disp2;
 
 MM::Dispatcher<TestDispatch21, Stat1Stat> disp21;
@@ -58,10 +58,10 @@ MM::Dispatcher<TestDispatch22, Stat2Stat> disp22;
 MM::Dispatcher<TestDispatch23, Stat3Stat> disp23;
 
 /*******************************************************\
-**  Теперь все определения                             **
+**  РўРµРїРµСЂСЊ РІСЃРµ РѕРїСЂРµРґРµР»РµРЅРёСЏ                             **
 \*******************************************************/
 
-/* Определяем классы */
+/* РћРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃС‹ */
 class B2
 {
 public:
@@ -86,8 +86,8 @@ public:
   MAKE_ACCEPTABLE(void, DynaParamType, D23);
 };
 
-/* Определяем наши мультиметоды и их перекрытия */
-/* Динамическое связывание */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅР°С€Рё РјСѓР»СЊС‚РёРјРµС‚РѕРґС‹ Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏ */
+/* Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ */
 struct TestDispatch2
 {
   static void apply(int, B2*,  B2*, int)
@@ -116,7 +116,7 @@ struct TestDispatch2
   }
 };
 
-/* Статическое связывание: предельные случаи - нет динамики */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ: РїСЂРµРґРµР»СЊРЅС‹Рµ СЃР»СѓС‡Р°Рё - РЅРµС‚ РґРёРЅР°РјРёРєРё */
 struct TestDispatch21
 {
   static void apply(int, std::string str1, const std::string& str2, int)
@@ -208,7 +208,7 @@ int main()
 }
 
 /*******************************************************\
-**  Тест смешанных мультиметодов                       **
+**  РўРµСЃС‚ СЃРјРµС€Р°РЅРЅС‹С… РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ                       **
 \*******************************************************/
 
 typedef TList<MM::LinkStatic<int, void>,

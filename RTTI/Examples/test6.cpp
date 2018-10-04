@@ -6,7 +6,7 @@
 
 namespace MM = MultiMethods_RTTI;
 
-/* Определяем классы */
+/* РћРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃС‹ */
 class B2
 {
 public:
@@ -17,8 +17,8 @@ class D21 : public B2 {};
 class D22 : public D21{};
 class D23 : public B2 {};
 
-/* Определяем наши мультиметоды и их перекрытия */
-/* Динамическое связывание */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅР°С€Рё РјСѓР»СЊС‚РёРјРµС‚РѕРґС‹ Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏ */
+/* Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ */
 struct TestDispatch
 {
   static void apply(B2*,  B2*,  B2*,  B2*,  B2*,  B2*)
@@ -47,9 +47,9 @@ struct TestDispatch
   }
 };
 
-/* Список типов иерархии. */
+/* РЎРїРёСЃРѕРє С‚РёРїРѕРІ РёРµСЂР°СЂС…РёРё. */
 typedef MM::MakeTList<B2, D21, D22, D23> ParamList;
-/* Создаём диспетчеры */
+/* РЎРѕР·РґР°С‘Рј РґРёСЃРїРµС‚С‡РµСЂС‹ */
 MM::Dispatcher<TestDispatch, void, ParamList*, ParamList*, ParamList*,
                                    ParamList*, ParamList*, ParamList*> disp;
 

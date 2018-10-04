@@ -6,17 +6,17 @@
 
 namespace MM = MultiMethods_Visitor;
 
-/* Наши тестовые классы */
+/* РќР°С€Рё С‚РµСЃС‚РѕРІС‹Рµ РєР»Р°СЃСЃС‹ */
 class B1;
 class D11;
 class D12;
 class D13;
 class D14;
 
-// Определение иерархии
+// РћРїСЂРµРґРµР»РµРЅРёРµ РёРµСЂР°СЂС…РёРё
 typedef MM::MakeTList<D13, D12, D11, B1, D14> ParamList;
 
-// Объявление мультиметодов
+// РћР±СЉСЏРІР»РµРЅРёРµ РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ
 class TestDispatch1;
 class TestDispatch2;
 class TestDispatch3;
@@ -25,7 +25,7 @@ class TestDispatch5;
 class TestDispatch6;
 class TestDispatch7;
 
-// Прототипы мультиметодов
+// РџСЂРѕС‚РѕС‚РёРїС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ
 typedef MM::Prototype<TestDispatch1, void, ParamList&&, std::string, std::string&, const std::string&, const volatile std::string&, volatile std::string&, std::string&&> Proto1;
 typedef MM::Prototype<TestDispatch2, void, std::string, std::string&, const std::string&, const volatile std::string&, volatile std::string&, std::string&&, ParamList&&> Proto2;
 typedef MM::Prototype<TestDispatch3, void, std::string&, const std::string&, const volatile std::string&, volatile std::string&, std::string&&, ParamList&&, std::string> Proto3;
@@ -35,11 +35,11 @@ typedef MM::Prototype<TestDispatch6, void, volatile std::string&, std::string&&,
 typedef MM::Prototype<TestDispatch7, void, std::string&&, ParamList&&, std::string, std::string&, const std::string&, const volatile std::string&, volatile std::string&> Proto7;
 
 /*******************************************************\
-**  Теперь все определения                             **
+**  РўРµРїРµСЂСЊ РІСЃРµ РѕРїСЂРµРґРµР»РµРЅРёСЏ                             **
 \*******************************************************/
 
-/* Определяем классы */
-/* Первая иерархия */
+/* РћРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃС‹ */
+/* РџРµСЂРІР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B1
 {
 public:
@@ -70,7 +70,7 @@ public:
   MAKE_ACCEPTABLE(Proto1, ParamList, D14);
 };
 
-/* Определяем наши мультиметоды и их перекрытия */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅР°С€Рё РјСѓР»СЊС‚РёРјРµС‚РѕРґС‹ Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏ */
 struct TestDispatch1
 {
   static void apply(B1&&,  std::string, std::string& s1, const std::string&, const volatile std::string&, volatile std::string&, std::string&& s2)
@@ -183,7 +183,7 @@ struct TestDispatch7
   }
 };
 
-/* Создаём диспетчеры */
+/* РЎРѕР·РґР°С‘Рј РґРёСЃРїРµС‚С‡РµСЂС‹ */
 MM::Dispatcher<Proto1> disp1;
 MM::Dispatcher<Proto2> disp2;
 MM::Dispatcher<Proto3> disp3;
