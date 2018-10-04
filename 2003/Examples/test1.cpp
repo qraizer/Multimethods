@@ -9,38 +9,38 @@ namespace MM = MultiMethods_03;
 using MM::TList;
 using MM::NullType;
 
-/* Наши тестовые классы */
+/* РќР°С€Рё С‚РµСЃС‚РѕРІС‹Рµ РєР»Р°СЃСЃС‹ */
 class B1;
 class D11;
 class D12;
 class D13;
 class D14;
 
-/* Список типов иерархии. Типы могут быть как угодно вперемежку. */
+/* РЎРїРёСЃРѕРє С‚РёРїРѕРІ РёРµСЂР°СЂС…РёРё. РўРёРїС‹ РјРѕРіСѓС‚ Р±С‹С‚СЊ РєР°Рє СѓРіРѕРґРЅРѕ РІРїРµСЂРµРјРµР¶РєСѓ. */
 typedef TList<D13, TList<D12, TList<D11, TList<B1, TList<D14, NullType> > > > > Param1List;
 
-/* Параметры мультиметода: единственный с поздним связыванием; возвращает void */
+/* РџР°СЂР°РјРµС‚СЂС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґР°: РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЃ РїРѕР·РґРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј; РІРѕР·РІСЂР°С‰Р°РµС‚ void */
 typedef MM::LinkDynamic<Param1List, const int&> DynaParam1Type;
-/* "Прототип" мультиметода - один параметр */
+/* "РџСЂРѕС‚РѕС‚РёРї" РјСѓР»СЊС‚РёРјРµС‚РѕРґР° - РѕРґРёРЅ РїР°СЂР°РјРµС‚СЂ */
 typedef TList<DynaParam1Type, NullType> Dyna1Simple;
 
-/* Параметры мультиметодов: с ранним связыванием, возвращают void */
-typedef MM::LinkStatic<      std::string,  const int&> StatParam1Type;        // по значению
-typedef MM::LinkStatic<const std::string&, const int&> StatParam2Type;        // по константной ссылке
-typedef MM::LinkStatic<      std::string&, const int&> StatParam3Type;        // по неконстантной ссылке
-/* "Прототипы" мультиметодов - по одному параметру */
+/* РџР°СЂР°РјРµС‚СЂС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ: СЃ СЂР°РЅРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј, РІРѕР·РІСЂР°С‰Р°СЋС‚ void */
+typedef MM::LinkStatic<      std::string,  const int&> StatParam1Type;        // РїРѕ Р·РЅР°С‡РµРЅРёСЋ
+typedef MM::LinkStatic<const std::string&, const int&> StatParam2Type;        // РїРѕ РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ
+typedef MM::LinkStatic<      std::string&, const int&> StatParam3Type;        // РїРѕ РЅРµРєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ
+/* "РџСЂРѕС‚РѕС‚РёРїС‹" РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ - РїРѕ РѕРґРЅРѕРјСѓ РїР°СЂР°РјРµС‚СЂСѓ */
 typedef TList<StatParam1Type, NullType> Stat1Simple;
 typedef TList<StatParam2Type, NullType> Stat2Simple;
 typedef TList<StatParam3Type, NullType> Stat3Simple;
 
-/* Объявляем структуры с мультиметодами и их перекрытиями */
+/* РћР±СЉСЏРІР»СЏРµРј СЃС‚СЂСѓРєС‚СѓСЂС‹ СЃ РјСѓР»СЊС‚РёРјРµС‚РѕРґР°РјРё Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏРјРё */
 struct TestDispatch1;
 
 struct TestDispatch11;
 struct TestDispatch12;
 struct TestDispatch13;
 
-/* Создаём диспетчеры */
+/* РЎРѕР·РґР°С‘Рј РґРёСЃРїРµС‚С‡РµСЂС‹ */
 MM::Dispatcher<TestDispatch1,  Dyna1Simple, const int&> disp1;
 
 MM::Dispatcher<TestDispatch11, Stat1Simple, const int&> disp11;
@@ -48,13 +48,13 @@ MM::Dispatcher<TestDispatch12, Stat2Simple, const int&> disp12;
 MM::Dispatcher<TestDispatch13, Stat3Simple, const int&> disp13;
 
 /*******************************************************\
-**  Теперь все определения                             **
+**  РўРµРїРµСЂСЊ РІСЃРµ РѕРїСЂРµРґРµР»РµРЅРёСЏ                             **
 \*******************************************************/
 
-/* Для теста возврата ссылок */
+/* Р”Р»СЏ С‚РµСЃС‚Р° РІРѕР·РІСЂР°С‚Р° СЃСЃС‹Р»РѕРє */
 int rets[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
 
-/* Определяем классы */
+/* РћРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃС‹ */
 class B1
 {
 public:
@@ -86,28 +86,28 @@ public:
   MAKE_ACCEPTABLE(const int&, DynaParam1Type, D14);
 };
 
-/* Определяем наши мультиметоды и их перекрытия */
-/* Динамическое связывание */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅР°С€Рё РјСѓР»СЊС‚РёРјРµС‚РѕРґС‹ Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏ */
+/* Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ */
 struct TestDispatch1
 {
-  static const int& apply(B1*  o)                     // базовый
+  static const int& apply(B1*  o)                     // Р±Р°Р·РѕРІС‹Р№
   {
     std::cout << "Single B1"  << '\t';
     return rets[0];
   }
-  static const int& apply(D12* o)                     // перекрывающий
+  static const int& apply(D12* o)                     // РїРµСЂРµРєСЂС‹РІР°СЋС‰РёР№
   {
     std::cout << "Single D12" << '\t';
     return rets[1];
   }
-  static const int& apply(D13* o)                     // ещё один перекрывающий
+  static const int& apply(D13* o)                     // РµС‰С‘ РѕРґРёРЅ РїРµСЂРµРєСЂС‹РІР°СЋС‰РёР№
   {
     std::cout << "Single D13" << '\t';
     return rets[2];
   }
 };
 
-/* Статическое связывание: предельные случаи - нет динамики */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ: РїСЂРµРґРµР»СЊРЅС‹Рµ СЃР»СѓС‡Р°Рё - РЅРµС‚ РґРёРЅР°РјРёРєРё */
 struct TestDispatch11
 {
   static const int& apply(std::string str)
@@ -143,7 +143,7 @@ int main()
   D13 o3;
   D14 o4;
 
-  /* Тест позднего связывания */
+  /* РўРµСЃС‚ РїРѕР·РґРЅРµРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ */
   std::cout << &disp1(&o ) - rets << '\n';
   std::cout << &disp1(&o1) - rets << '\n';
   std::cout << &disp1(&o2) - rets << '\n';
@@ -152,7 +152,7 @@ int main()
 
   std::cout << std::endl;
 
-  /* Тест раннего связывания */
+  /* РўРµСЃС‚ СЂР°РЅРЅРµРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ */
   std::string s = "pointer to string object is ";
 
   std::cout << "Before the passing on value: " << s << static_cast<void*>(&s) << std::endl;

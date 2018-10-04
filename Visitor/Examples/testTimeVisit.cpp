@@ -7,7 +7,7 @@
 
 namespace MM = MultiMethods_Visitor;
 
-/* Наши тестовые классы */
+/* РќР°С€Рё С‚РµСЃС‚РѕРІС‹Рµ РєР»Р°СЃСЃС‹ */
 class B1;
 class D11;
 class D12;
@@ -19,13 +19,13 @@ class D21;
 class D22;
 class D23;
 
-// Определение иерархий
+// РћРїСЂРµРґРµР»РµРЅРёРµ РёРµСЂР°СЂС…РёР№
 typedef MM::MakeTList<D13, D12, D11, B1, D14> Param1List;
 typedef MM::MakeTList<B2,  D21, D22, D23>     Param2List;
 
 struct TestDisp1;
 
-// Прототипы мультиметодов
+// РџСЂРѕС‚РѕС‚РёРїС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ
 typedef MM::Prototype<TestDisp1, int,
                         Param2List*, std::chrono::high_resolution_clock::time_point&,
                         Param1List*, Param2List*,
@@ -61,7 +61,7 @@ public:
   MAKE_ACCEPTABLE_DECL(Proto1, Param1List, D14);
 };
 
-/* Вторая иерархия */
+/* Р’С‚РѕСЂР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B2
 {
 public:

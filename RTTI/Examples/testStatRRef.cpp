@@ -6,8 +6,8 @@
 
 namespace MM = MultiMethods_RTTI;
 
-/* Определяем классы */
-/* Первая иерархия */
+/* РћРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃС‹ */
+/* РџРµСЂРІР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B1
 {
 public:
@@ -19,7 +19,7 @@ class D12 : public B1 {};
 class D13 : public D11{};
 class D14 : public D12{};
 
-/* Определяем наши мультиметоды и их перекрытия */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅР°С€Рё РјСѓР»СЊС‚РёРјРµС‚РѕРґС‹ Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏ */
 struct TestDispatch1
 {
   static void apply(B1&&,  std::string, std::string&, const std::string&, const volatile std::string&, volatile std::string&, std::string&&)
@@ -132,10 +132,10 @@ struct TestDispatch7
   }
 };
 
-// Определение иерархии
+// РћРїСЂРµРґРµР»РµРЅРёРµ РёРµСЂР°СЂС…РёРё
 typedef MM::MakeTList<D13, D12, D11, B1, D14> ParamList;
 
-/* Создаём диспетчеры */
+/* РЎРѕР·РґР°С‘Рј РґРёСЃРїРµС‚С‡РµСЂС‹ */
 MM::Dispatcher<TestDispatch1, void, ParamList&&, std::string, std::string&, const std::string&, const volatile std::string&, volatile std::string&, std::string&&> disp1;
 MM::Dispatcher<TestDispatch2, void, std::string, std::string&, const std::string&, const volatile std::string&, volatile std::string&, std::string&&, ParamList&&> disp2;
 MM::Dispatcher<TestDispatch3, void, std::string&, const std::string&, const volatile std::string&, volatile std::string&, std::string&&, ParamList&&, std::string> disp3;

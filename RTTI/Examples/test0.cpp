@@ -5,7 +5,7 @@
 
 namespace MM = MultiMethods_RTTI;
 
-/* Определяем тривиальный мультиметод. Пусть хоть возвращает что-то нетривиальное. */
+/* РћРїСЂРµРґРµР»СЏРµРј С‚СЂРёРІРёР°Р»СЊРЅС‹Р№ РјСѓР»СЊС‚РёРјРµС‚РѕРґ. РџСѓСЃС‚СЊ С…РѕС‚СЊ РІРѕР·РІСЂР°С‰Р°РµС‚ С‡С‚Рѕ-С‚Рѕ РЅРµС‚СЂРёРІРёР°Р»СЊРЅРѕРµ. */
 struct TestDispatch0
 {
   static std::string apply()
@@ -14,7 +14,7 @@ struct TestDispatch0
   }
 };
 
-MM::Dispatcher<TestDispatch0, std::string> disp0;     // Диспетчер
+MM::Dispatcher<TestDispatch0, std::string> disp0;     // Р”РёСЃРїРµС‚С‡РµСЂ
 
 int main()
 {
