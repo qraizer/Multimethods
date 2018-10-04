@@ -27,15 +27,15 @@ typedef TList<B2,  TList<D21, TList<D22, TList<D23,           NullType> > > >   
 typedef MM::LinkDynamic<Param1List, int> Dyna1ParamType;
 typedef MM::LinkDynamic<Param2List, int> Dyna2ParamType;
 
-typedef MM::LinkStatic<std::chrono::high_resolution_clock::time_point&, int> StatParam1Type; // по ссылке
-typedef MM::LinkStatic<std::ostream&,                                   int> StatParam2Type; // по ссылке
+typedef MM::LinkStatic<std::chrono::high_resolution_clock::time_point&, int> StatParam1Type; // РїРѕ СЃСЃС‹Р»РєРµ
+typedef MM::LinkStatic<std::ostream&,                                   int> StatParam2Type; // РїРѕ СЃСЃС‹Р»РєРµ
 
-typedef TList<Dyna2ParamType,                                   /* два крайних параметра одного */
-        TList<StatParam1Type,                                   /* типа и средний иного         */
-        TList<Dyna1ParamType,                                   /* типа и средний иного         */
+typedef TList<Dyna2ParamType,                                   /* РґРІР° РєСЂР°Р№РЅРёС… РїР°СЂР°РјРµС‚СЂР° РѕРґРЅРѕРіРѕ */
+        TList<StatParam1Type,                                   /* С‚РёРїР° Рё СЃСЂРµРґРЅРёР№ РёРЅРѕРіРѕ         */
+        TList<Dyna1ParamType,                                   /* С‚РёРїР° Рё СЃСЂРµРґРЅРёР№ РёРЅРѕРіРѕ         */
         TList<Dyna2ParamType,
-        TList<StatParam1Type,                                   /* типа и средний иного         */
-        TList<StatParam2Type, NullType>>>>>> Dyna1Dyna2Dyna1;   /* все с поздним связыванием    */
+        TList<StatParam1Type,                                   /* С‚РёРїР° Рё СЃСЂРµРґРЅРёР№ РёРЅРѕРіРѕ         */
+        TList<StatParam2Type, NullType>>>>>> Dyna1Dyna2Dyna1;   /* РІСЃРµ СЃ РїРѕР·РґРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј    */
 
 struct TestDispatch1;
 
@@ -72,7 +72,7 @@ public:
   MAKE_ACCEPTABLE(int, Dyna1ParamType, D14);
 };
 
-/* Вторая иерархия */
+/* Р’С‚РѕСЂР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B2
 {
 public:

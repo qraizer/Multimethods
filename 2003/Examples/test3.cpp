@@ -8,7 +8,7 @@ namespace MM = MultiMethods_03;
 using MM::TList;
 using MM::NullType;
 
-/* Наши тестовые классы */
+/* РќР°С€Рё С‚РµСЃС‚РѕРІС‹Рµ РєР»Р°СЃСЃС‹ */
 class B1;
 class D11;
 class D12;
@@ -20,54 +20,54 @@ class D21;
 class D22;
 class D23;
 
-/* Список типов иерархии. Типы могут быть как угодно вперемежку. */
+/* РЎРїРёСЃРѕРє С‚РёРїРѕРІ РёРµСЂР°СЂС…РёРё. РўРёРїС‹ РјРѕРіСѓС‚ Р±С‹С‚СЊ РєР°Рє СѓРіРѕРґРЅРѕ РІРїРµСЂРµРјРµР¶РєСѓ. */
 typedef TList<D13, TList<D12, TList<D11, TList<B1, TList<D14, NullType> > > > > Param1List;
 typedef TList<B2,  TList<D21, TList<D22, TList<D23,           NullType> > > >   Param2List;
 
-/* Параметры мультиметода: оба одного типа с поздним связыванием; возвращают int */
+/* РџР°СЂР°РјРµС‚СЂС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґР°: РѕР±Р° РѕРґРЅРѕРіРѕ С‚РёРїР° СЃ РїРѕР·РґРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј; РІРѕР·РІСЂР°С‰Р°СЋС‚ int */
 typedef MM::LinkDynamic<Param1List, int> Dyna1ParamType;
 typedef MM::LinkDynamic<Param2List, int> Dyna2ParamType;
-/* Параметры мультиметодов: с ранним связыванием, возвращают int */
-typedef MM::LinkStatic<      std::string,  int> StatParam1Type; // по значению
-typedef MM::LinkStatic<const std::string&, int> StatParam2Type; // по константной ссылке
-typedef MM::LinkStatic<      std::string&, int> StatParam3Type; // по неконстантной ссылке
+/* РџР°СЂР°РјРµС‚СЂС‹ РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ: СЃ СЂР°РЅРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј, РІРѕР·РІСЂР°С‰Р°СЋС‚ int */
+typedef MM::LinkStatic<      std::string,  int> StatParam1Type; // РїРѕ Р·РЅР°С‡РµРЅРёСЋ
+typedef MM::LinkStatic<const std::string&, int> StatParam2Type; // РїРѕ РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ
+typedef MM::LinkStatic<      std::string&, int> StatParam3Type; // РїРѕ РЅРµРєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ
 
-/* "Прототипы" мультиметодов */
-typedef TList<Dyna2ParamType,                               /* два крайних параметра одного */
-        TList<Dyna1ParamType,                               /* типа и средний иного         */
-        TList<Dyna2ParamType, NullType> > > Dyna1Dyna2Dyna1;/* все с поздним связыванием    */
+/* "РџСЂРѕС‚РѕС‚РёРїС‹" РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ */
+typedef TList<Dyna2ParamType,                               /* РґРІР° РєСЂР°Р№РЅРёС… РїР°СЂР°РјРµС‚СЂР° РѕРґРЅРѕРіРѕ */
+        TList<Dyna1ParamType,                               /* С‚РёРїР° Рё СЃСЂРµРґРЅРёР№ РёРЅРѕРіРѕ         */
+        TList<Dyna2ParamType, NullType> > > Dyna1Dyna2Dyna1;/* РІСЃРµ СЃ РїРѕР·РґРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј    */
 
-typedef TList<StatParam1Type,                         /* по значению, по константной */
-        TList<StatParam2Type,                         /* и по неконстантной ссылкам  */
-        TList<StatParam3Type, NullType> > > Stat1Stat2Stat3;/* все с ранним связыванием    */
-typedef TList<StatParam2Type,                /* аналогично со сдвигом параметров */
+typedef TList<StatParam1Type,                         /* РїРѕ Р·РЅР°С‡РµРЅРёСЋ, РїРѕ РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ */
+        TList<StatParam2Type,                         /* Рё РїРѕ РЅРµРєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєР°Рј  */
+        TList<StatParam3Type, NullType> > > Stat1Stat2Stat3;/* РІСЃРµ СЃ СЂР°РЅРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј    */
+typedef TList<StatParam2Type,                /* Р°РЅР°Р»РѕРіРёС‡РЅРѕ СЃРѕ СЃРґРІРёРіРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ */
         TList<StatParam3Type,       
         TList<StatParam1Type, NullType> > > Stat2Stat3Stat1;
-typedef TList<StatParam3Type,                /* ещё один сдвиг */
+typedef TList<StatParam3Type,                /* РµС‰С‘ РѕРґРёРЅ СЃРґРІРёРі */
         TList<StatParam1Type,       
         TList<StatParam2Type, NullType> > > Stat3Stat1Stat2;
 
-typedef TList<Dyna2ParamType,                /* два крайних параметра разных  */
-        TList<StatParam1Type,                /* типов с поздним связыванием и */
-        TList<Dyna1ParamType, NullType> > > Dyna1Stat1Dyna2;/* средний с ранним по значению  */
-typedef TList<Dyna2ParamType,                /* то же со средним по */
-        TList<StatParam2Type,                /* константной ссылке  */
+typedef TList<Dyna2ParamType,                /* РґРІР° РєСЂР°Р№РЅРёС… РїР°СЂР°РјРµС‚СЂР° СЂР°Р·РЅС‹С…  */
+        TList<StatParam1Type,                /* С‚РёРїРѕРІ СЃ РїРѕР·РґРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј Рё */
+        TList<Dyna1ParamType, NullType> > > Dyna1Stat1Dyna2;/* СЃСЂРµРґРЅРёР№ СЃ СЂР°РЅРЅРёРј РїРѕ Р·РЅР°С‡РµРЅРёСЋ  */
+typedef TList<Dyna2ParamType,                /* С‚Рѕ Р¶Рµ СЃРѕ СЃСЂРµРґРЅРёРј РїРѕ */
+        TList<StatParam2Type,                /* РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ  */
         TList<Dyna1ParamType, NullType> > > Dyna1Stat2Dyna2;
-typedef TList<Dyna2ParamType,                /* то же но с неконстантной ссылкой */
+typedef TList<Dyna2ParamType,                /* С‚Рѕ Р¶Рµ РЅРѕ СЃ РЅРµРєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРѕР№ */
         TList<StatParam3Type,       
         TList<Dyna1ParamType, NullType> > > Dyna1Stat3Dyna2;
 
-typedef TList<StatParam1Type,                /* два крайних параметра разных  */
-        TList<Dyna2ParamType,                /* типов с ранним связыванием и  */
-        TList<StatParam2Type, NullType> > > Stat1Dyna2Stat2;/* средний с поздним по значению */
-typedef TList<StatParam2Type,                /* то же со сдвигом типов крайних */
-        TList<Dyna2ParamType,                /* параметров                     */
+typedef TList<StatParam1Type,                /* РґРІР° РєСЂР°Р№РЅРёС… РїР°СЂР°РјРµС‚СЂР° СЂР°Р·РЅС‹С…  */
+        TList<Dyna2ParamType,                /* С‚РёРїРѕРІ СЃ СЂР°РЅРЅРёРј СЃРІСЏР·С‹РІР°РЅРёРµРј Рё  */
+        TList<StatParam2Type, NullType> > > Stat1Dyna2Stat2;/* СЃСЂРµРґРЅРёР№ СЃ РїРѕР·РґРЅРёРј РїРѕ Р·РЅР°С‡РµРЅРёСЋ */
+typedef TList<StatParam2Type,                /* С‚Рѕ Р¶Рµ СЃРѕ СЃРґРІРёРіРѕРј С‚РёРїРѕРІ РєСЂР°Р№РЅРёС… */
+        TList<Dyna2ParamType,                /* РїР°СЂР°РјРµС‚СЂРѕРІ                     */
         TList<StatParam3Type, NullType> > > Stat2Dyna2Stat3;
-typedef TList<StatParam3Type,                /* ещё один сдвиг */
+typedef TList<StatParam3Type,                /* РµС‰С‘ РѕРґРёРЅ СЃРґРІРёРі */
         TList<Dyna2ParamType,       
         TList<StatParam1Type, NullType> > > Stat3Dyna2Stat1;
 
-/* Определяем несколько мультиметодов */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅРµСЃРєРѕР»СЊРєРѕ РјСѓР»СЊС‚РёРјРµС‚РѕРґРѕРІ */
 struct TestDispatch1;
 struct TestDispatch21;
 struct TestDispatch22;
@@ -91,11 +91,11 @@ MM::Dispatcher<TestDispatch42, Stat2Dyna2Stat3, int> disp332;
 MM::Dispatcher<TestDispatch43, Stat3Dyna2Stat1, int> disp333;
 
 /*******************************************************\
-**  Теперь все определения                             **
+**  РўРµРїРµСЂСЊ РІСЃРµ РѕРїСЂРµРґРµР»РµРЅРёСЏ                             **
 \*******************************************************/
 
-/* Определяем классы */
-/* Первая иерархия */
+/* РћРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃС‹ */
+/* РџРµСЂРІР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B1
 {
 public:
@@ -127,7 +127,7 @@ public:
   MAKE_ACCEPTABLE(int, Dyna1ParamType, D14);
 };
 
-/* Вторая иерархия */
+/* Р’С‚РѕСЂР°СЏ РёРµСЂР°СЂС…РёСЏ */
 class B2
 {
 public:
@@ -154,8 +154,8 @@ public:
 };
 
 
-/* Определяем наши мультиметоды и их перекрытия */
-/* Динамическое связывание всех параметров */
+/* РћРїСЂРµРґРµР»СЏРµРј РЅР°С€Рё РјСѓР»СЊС‚РёРјРµС‚РѕРґС‹ Рё РёС… РїРµСЂРµРєСЂС‹С‚РёСЏ */
+/* Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ РІСЃРµС… РїР°СЂР°РјРµС‚СЂРѕРІ */
 struct TestDispatch1
 {
   static int apply(B2*,  B1*,  B2*)
@@ -199,7 +199,7 @@ struct TestDispatch1
     return 8;
   }
 };
-/* Статическое связывание среднего параметра по значению */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ СЃСЂРµРґРЅРµРіРѕ РїР°СЂР°РјРµС‚СЂР° РїРѕ Р·РЅР°С‡РµРЅРёСЋ */
 struct TestDispatch21
 {
   static int apply(B2*,  std::string str,  B1*)
@@ -251,7 +251,7 @@ struct TestDispatch21
     return 18;
   }
 };
-/* Статическое связывание среднего параметра по константной ссылке */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ СЃСЂРµРґРЅРµРіРѕ РїР°СЂР°РјРµС‚СЂР° РїРѕ РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ СЃСЃС‹Р»РєРµ */
 struct TestDispatch22
 {
   static int apply(B2*,  const std::string& str,  B1*)
@@ -295,7 +295,7 @@ struct TestDispatch22
     return 28;
   }
 };
-/* Статическое связывание среднего параметра по неконстантной  ссылке */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ СЃСЂРµРґРЅРµРіРѕ РїР°СЂР°РјРµС‚СЂР° РїРѕ РЅРµРєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№  СЃСЃС‹Р»РєРµ */
 struct TestDispatch23
 {
   static int apply(B2*,  std::string& str,  B1*)
@@ -348,7 +348,7 @@ struct TestDispatch23
   }
 };
 
-/* Статическое связывание всех парамтеров */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ РІСЃРµС… РїР°СЂР°РјС‚РµСЂРѕРІ */
 struct TestDispatch31
 {
   static int apply(std::string str1, const std::string& str2, std::string& str3)
@@ -380,7 +380,7 @@ struct TestDispatch33
   }
 };
 
-/* Статическое связывание крайних параметров и позднее среднего */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ РєСЂР°Р№РЅРёС… РїР°СЂР°РјРµС‚СЂРѕРІ Рё РїРѕР·РґРЅРµРµ СЃСЂРµРґРЅРµРіРѕ */
 struct TestDispatch41
 {
   static int apply(std::string str1, B2*,  const std::string& str2)
@@ -403,7 +403,7 @@ struct TestDispatch41
   }
 };
 
-/* Статическое связывание крайних параметров и позднее среднего */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ РєСЂР°Р№РЅРёС… РїР°СЂР°РјРµС‚СЂРѕРІ Рё РїРѕР·РґРЅРµРµ СЃСЂРµРґРЅРµРіРѕ */
 struct TestDispatch42
 {
   static int apply(const std::string& str1, B2*,  std::string& str2)
@@ -426,7 +426,7 @@ struct TestDispatch42
   }
 };
 
-/* Статическое связывание крайних параметров и позднее среднего */
+/* РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ РєСЂР°Р№РЅРёС… РїР°СЂР°РјРµС‚СЂРѕРІ Рё РїРѕР·РґРЅРµРµ СЃСЂРµРґРЅРµРіРѕ */
 struct TestDispatch43
 {
   static int apply(std::string& str1, B2*,  std::string str2)
@@ -452,8 +452,8 @@ struct TestDispatch43
   }
 };
 
-/* Тест динамического связывания с тройной диспетчеризацией. Главным образом чекается динамическое
-   связывание посередине, т.к. по краям оно чекается также и в test2.cpp */
+/* РўРµСЃС‚ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ СЃ С‚СЂРѕР№РЅРѕР№ РґРёСЃРїРµС‚С‡РµСЂРёР·Р°С†РёРµР№. Р“Р»Р°РІРЅС‹Рј РѕР±СЂР°Р·РѕРј С‡РµРєР°РµС‚СЃСЏ РґРёРЅР°РјРёС‡РµСЃРєРѕРµ
+   СЃРІСЏР·С‹РІР°РЅРёРµ РїРѕСЃРµСЂРµРґРёРЅРµ, С‚.Рє. РїРѕ РєСЂР°СЏРј РѕРЅРѕ С‡РµРєР°РµС‚СЃСЏ С‚Р°РєР¶Рµ Рё РІ test2.cpp */
 static void testDyna()
 {
   B1  o1;
@@ -575,9 +575,9 @@ static void testDyna()
   std::cout << std::endl << std::endl;
 }
 
-/* Тест динамического связывания с двойной диспетчеризацией и статического связывания.
-   Статическое связывание проверяется только посередине, т.к. по краям оно чекается в test2.cpp
-   Также проверяется связь друг с другом разных конкретных акцепторов от разных абстрактных. */
+/* РўРµСЃС‚ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ СЃ РґРІРѕР№РЅРѕР№ РґРёСЃРїРµС‚С‡РµСЂРёР·Р°С†РёРµР№ Рё СЃС‚Р°С‚РёС‡РµСЃРєРѕРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ.
+   РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІСЏР·С‹РІР°РЅРёРµ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїРѕСЃРµСЂРµРґРёРЅРµ, С‚.Рє. РїРѕ РєСЂР°СЏРј РѕРЅРѕ С‡РµРєР°РµС‚СЃСЏ РІ test2.cpp
+   РўР°РєР¶Рµ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃРІСЏР·СЊ РґСЂСѓРі СЃ РґСЂСѓРіРѕРј СЂР°Р·РЅС‹С… РєРѕРЅРєСЂРµС‚РЅС‹С… Р°РєС†РµРїС‚РѕСЂРѕРІ РѕС‚ СЂР°Р·РЅС‹С… Р°Р±СЃС‚СЂР°РєС‚РЅС‹С…. */
 static void testDynaStatDyna()
 {
   B1  o1;
@@ -726,8 +726,8 @@ static void testDynaStatDyna()
   std::cout << "Outside a multimethod:       " << s << std::endl;
 }
 
-/* Тест динамического связывания с двойной диспетчеризацией и статического связывания.
-   Главным образом проверяется связь друг с другом разных конкретных акцепторов от разных абстрактных. */
+/* РўРµСЃС‚ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ СЃ РґРІРѕР№РЅРѕР№ РґРёСЃРїРµС‚С‡РµСЂРёР·Р°С†РёРµР№ Рё СЃС‚Р°С‚РёС‡РµСЃРєРѕРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ.
+   Р“Р»Р°РІРЅС‹Рј РѕР±СЂР°Р·РѕРј РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃРІСЏР·СЊ РґСЂСѓРі СЃ РґСЂСѓРіРѕРј СЂР°Р·РЅС‹С… РєРѕРЅРєСЂРµС‚РЅС‹С… Р°РєС†РµРїС‚РѕСЂРѕРІ РѕС‚ СЂР°Р·РЅС‹С… Р°Р±СЃС‚СЂР°РєС‚РЅС‹С…. */
 static void testStatDynaStat()
 {
   B2  o2;
@@ -769,7 +769,7 @@ static void testStatDynaStat()
   std::cout << "Outside a multimethod:       " << s1 << s2 << std::endl;
 }
 
-/* Тест статического связывания с тройной диспетчеризацией. Предельный случай. */
+/* РўРµСЃС‚ СЃС‚Р°С‚РёС‡РµСЃРєРѕРіРѕ СЃРІСЏР·С‹РІР°РЅРёСЏ СЃ С‚СЂРѕР№РЅРѕР№ РґРёСЃРїРµС‚С‡РµСЂРёР·Р°С†РёРµР№. РџСЂРµРґРµР»СЊРЅС‹Р№ СЃР»СѓС‡Р°Р№. */
 static void testStat()
 {
   std::string s1(" - it's the 1st string ");
