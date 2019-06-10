@@ -14,6 +14,7 @@ Main characteristics:
 - no reinterpret_cast<>, no dynamic_cast<>
 - full params type control for static linkage params on entire path from dispatcher call to getting execution by multimethod; only Standard implicit convertions are allowed; (C++03 has some troubles there); no unneeded copyes (but not for return value, sorry);
 - great performance; Vistor (both) extremly close to native implementation (wheither it existed).
+
 Ideas of these implementations relatively simple but their descriptions take many space. Thus I keep this readme without of it. But I can give URLs to russian forum topics where these design ideas detaily described. Also this lib contain many comments on russian, sorry.
 - http://forum.sources.ru/index.php?showtopic=413422 – C++1x on Visitor pattern;  
 - http://forum.sources.ru/index.php?showtopic=413381 – C++1x on RTTI;
