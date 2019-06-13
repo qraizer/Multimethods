@@ -9,7 +9,7 @@ Main characteristics:
 - static linkage allow any types, any indirection (r-value refs included, excepting C++03 of course) and any cv-qualification (excepting r-value refs, I'm lazy);
 - dynamic linkage also allow same, excepting param-by-value of course (but C++03 allow only cv-nonqualified pointers); you can use same or different class hierarchies for different dynamic params;
 - simple and intuitive definition of dispatcher (C++03 is more comprehensive);
-- dynamic linkage uses rules of Standard overload rules; you will get a compile-time error on ambiguous or undecidability;
+- you don't must to create full set of overriding combination for dynamic params; dynamic linkage uses rules of Standard overload rules; you will get a compile-time error on ambiguous or undecidability;
 - base multimethod and all its overrides are encapsulated within one scope;
 - no reinterpret_cast<>, no dynamic_cast<>;
 - full params type control for static linkage params on entire path from dispatcher call to getting execution by multimethod; only Standard implicit conversions are allowed; (C++03 has some troubles there); no unneeded copies (but not for return value, sorry);
